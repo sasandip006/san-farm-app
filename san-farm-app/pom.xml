@@ -83,6 +83,15 @@
 						</build>
 					</images>
 				</configuration>
+				<executions>
+					<execution>
+						<id>build-image</id>
+						<phase>verify</phase>
+						<goals>
+							<goal>build</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>
