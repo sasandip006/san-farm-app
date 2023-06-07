@@ -6,7 +6,7 @@
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>3.1.0</version>
-		<relativePath/> <!-- lookup parent from repository -->
+		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>san.farm.live</groupId>
 	<artifactId>san-farm-app</artifactId>
@@ -14,7 +14,7 @@
 	<name>san-farm-app</name>
 	<description>Live Farming Application project for Spring Boot</description>
 	<properties>
-		<java.version>11</java.version>
+		<java.version>17</java.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -27,13 +27,13 @@
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-webflux</artifactId>
+			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.kafka</groupId>
 			<artifactId>kafka-streams</artifactId>
 		</dependency>
-        <dependency>
+		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
 			<optional>true</optional>
@@ -54,33 +54,35 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
-
 	<build>
 		<plugins>
-<!--			<plugin>-->
-<!--				<groupId>org.springframework.boot</groupId>-->
-<!--				<artifactId>spring-boot-maven-plugin</artifactId>-->
-<!--			</plugin>-->
+			<!--			<plugin>-->
+			<!--				<groupId>org.springframework.boot</groupId>-->
+			<!--				<artifactId>spring-boot-maven-plugin</artifactId>-->
+			<!--			</plugin>-->
 			<plugin>
 				<groupId>io.fabric8</groupId>
 				<artifactId>docker-maven-plugin</artifactId>
-				<version>0.43.0</version>
+				<version>0.40.1</version>
 				<configuration>
-					<dockerHost>tcp://http.docker.internal:3128</dockerHost>
+					<!--					<dockerHost>tcp://http.docker.internal:3128</dockerHost>-->
+					<dockerHost>tcp://localhost:2375</dockerHost>
 					<images>
-						<image>${project.name}</image>
-						<build>
-							<from>openjdk:17</from>
-							<assembly>
-								<name>build</name>
-								<descriptorRef>artifact</descriptorRef>
-							</assembly>
-							<ports>
-								<port>8090</port>
-							</ports>
-							<cmd>java -jar build/${project.name}-${project.version}.jar</cmd>
-							<maintainer>sandeepandhael@gmail.com</maintainer>
-						</build>
+						<image>
+							<name>${project.name}</name>
+							<build>
+								<from>openjdk:17</from>
+								<assembly>
+									<name>build</name>
+									<descriptorRef>artifact</descriptorRef>
+								</assembly>
+								<ports>
+									<port>8090</port>
+								</ports>
+								<cmd>java -jar build/${project.name}-${project.version}.jar</cmd>
+								<maintainer>sandeepandhael@gmail.com</maintainer>
+							</build>
+						</image>
 					</images>
 				</configuration>
 				<executions>
@@ -95,5 +97,4 @@
 			</plugin>
 		</plugins>
 	</build>
-
 </project>
