@@ -67,10 +67,10 @@
 				<configuration>
 <!--					<dockerHost>tcp://http.docker.internal:3128</dockerHost>-->
 <!--					<dockerHost>tcp://localhost:2375</dockerHost>-->
-					<dockerHost>tcp://172.28.32.1:2375</dockerHost>
+<!--					<dockerHost>tcp://172.28.32.1:2375</dockerHost>-->
 					<images>
 						<image>
-							<name>${project.name}</name>
+							<name>sasandip006/${project.name}</name>
 							<build>
 								<from>openjdk:17</from>
 								<assembly>
@@ -91,6 +91,7 @@
 						<id>build-image</id>
 						<phase>verify</phase>
 						<goals>
+							<goal>help</goal>
 							<goal>build</goal>
 						</goals>
 					</execution>
