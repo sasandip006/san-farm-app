@@ -69,7 +69,7 @@
                 <artifactId>docker-maven-plugin</artifactId>
                 <version>0.40.1</version>
                 <configuration>
-                    <!--					<dockerHost>tcp://http.docker.internal:3128</dockerHost>-->
+                    					<dockerHost>http://host.docker.internal:2375/</dockerHost>
                     <!--					<dockerHost>tcp://localhost:2375</dockerHost>-->
                     <!--					<dockerHost>tcp://172.28.32.1:2375</dockerHost>-->
                     <images>
