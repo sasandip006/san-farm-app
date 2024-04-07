@@ -88,6 +88,9 @@
                     <!--                    					<dockerHost>tcp://localhost:2375</dockerHost>-->
                     <!--for running local-->
                     <!--					<dockerHost>tcp://172.28.32.1:2375</dockerHost>-->
+<!--                    <dockerHost>tcp://172.18.173.145:2376</dockerHost>-->
+<!--                    <certPath>C:/Users/HP/.minishift/certs</certPath> -->
+                      <useColor>true</useColor>
                     <images>
                         <image>
                             <name>sasandip006/${project.name}</name>
@@ -105,8 +108,13 @@
                             </build>
                             <run>
                                 <ports>
-                                    <port>localhost:7085:8070</port> <!--second container/ app port-->
+                                    <port>localhost:7085:8070</port> <!--second container/ app port  value can be 8085:8070-->
                                 </ports>
+                                <volumes>
+                                    <bind>
+                                        <volume>/sandeep/logs</volume>
+                                    </bind>
+                                </volumes>
                                 <wait>
                                     <http>
                                         <!--                                        <url>http://127.0.0.1:7085/v1/farm?name=sandeep</url>   -->
@@ -121,6 +129,7 @@
                                     <kill>2000</kill>
                                     <shutdown>100</shutdown>
                                 </wait>
+                                <links></links>
                             </run>
                         </image>
                     </images>
